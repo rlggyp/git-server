@@ -2,7 +2,7 @@
 
 ### How to Build
 ```bash
-docker build . -t git-server --build-arg --build-arg PASSWORD=rlggyp1248
+docker build . -t git-server
 ```
 ### How to Use
 ```bash
