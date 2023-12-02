@@ -1,0 +1,8 @@
+services:
+  git-server:
+    container_name: "git-server"
+    build: .
+    ports:
+      - "1248:22"
+    volumes:
+      - "${HOME}/my_repo_dir:/repo_dir"
