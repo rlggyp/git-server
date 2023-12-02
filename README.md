@@ -12,13 +12,22 @@ To build the Docker image, execute the following command in the project director
 docker build . -t git-server
 ```
 
-### Run the Docker Container
+### Create Directory
+Before creating container, make sure that you have created a directory named `my_repo_dir` on your home directory using this command:
+```
+mkdir ${HOME}/my_repo_dir
+```
+feel free to modify it for your shared repository.  
+### Run the Docker Container using `docker run`
 To run the Git Server as a Docker container, use the following command:
-
 ```bash
 docker run --name my_git_server -it -d -p 1248:22 -v $HOME/my_repo_dir/:/repo_dir git-server:latest
 ```
-
+### Run the Docker Container using `docker compose`
+To run the Git Server as a Docker container, use the following command:
+```bash
+docker-commpose up
+```
 ### Access Git Server
 Once the container is running, you can access the Git Server via SSH using the specified port:
 ```bash
@@ -32,11 +41,11 @@ git clone ssh://root@your_ip:1248/repo_dir/repository.git
 ```
 
 ### Push and Pull from Git Server
-Before pushing or pulling, set the remote repository for Git Server using:
+Before pushing or pulling, set the server repository config into bare using this command:
 ```bash
-git remote set-url origin ssh://root@your_ip:1248/repo_dir/repository.git
+git config --local core.bare true
 ```
-After adding remote repository now you can push or pull, using the following command:
+After setting the server into bare, the client now can push or pull using the following command:
 ```bash
 # Push to Git Server
 git push origin your_branch
